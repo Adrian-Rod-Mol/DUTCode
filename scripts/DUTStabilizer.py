@@ -26,7 +26,7 @@ def parse_args():
     parser.add_argument('--InputBasePath', help='path to input videos (cliped as frames)', default='')
     parser.add_argument('--OutputBasePath', help='path to save output stable videos', default='./')
     parser.add_argument('--OutNamePrefix', help='prefix name before the output video name', default='')
-    parser.add_argument('--MaxLength', help='max number of frames can be dealt with one time', type=int, default=1200)
+    parser.add_argument('--MaxLength', help='max number of frames can be dealt with one time', type=int, default=350)
     parser.add_argument('--Repeat', help='max number of frames can be dealt with one time', type=int, default=50)
     return parser.parse_args()
 
@@ -71,8 +71,8 @@ def generateStable(model, base_path, outPath, outPrefix, max_length, args):
     frame_height = cfg.MODEL.HEIGHT
     
     print("generate stabilized video...")
-    fourcc = cv2.VideoWriter_fourcc(*'MP4V')
-    out = cv2.VideoWriter(os.path.join(outPath, outPrefix + 'DUT_stable.mp4'), fourcc, frame_rate, (frame_width, frame_height))
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    out = cv2.VideoWriter(os.path.join(outPath, outPrefix + 'DUT_stable.mp4'), fourcc, frame_rate, (frame_height, frame_width))
 
     new_x_motion_meshes = sx_paths - x_paths
     new_y_motion_meshes = sy_paths - y_paths
@@ -85,7 +85,7 @@ def generateStable(model, base_path, outPath, outPrefix, max_length, args):
         HORIZONTAL_BORDER = 80
 
         new_frame = frame[VERTICAL_BORDER:-VERTICAL_BORDER, HORIZONTAL_BORDER:-HORIZONTAL_BORDER]
-        new_frame = cv2.resize(new_frame, (frame.shape[1], frame.shape[0]), interpolation=cv2.INTER_CUBIC)
+        new_frame = cv2.resize(new_frame, (frame.shape[0], frame.shape[1]), interpolation=cv2.INTER_CUBIC)
         out.write(new_frame)
     out.release()
 

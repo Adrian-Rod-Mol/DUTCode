@@ -16,6 +16,9 @@ else
     `mkdir -p $OutputBasePath`;
 fi
 
+# Initializating virtual enviroment
+source ./venv/bin/activate
+
 # Run the DUT model
 echo " Stabiling using the DUT model "
 echo "-----------------------------------"
@@ -28,6 +31,7 @@ python ./scripts/DUTStabilizer.py \
     --InputBasePath=$InputPath \
     --OutputBasePath=$OutputBasePath 
 
+'''
 # Run the DIFRINT model
 echo " Stabiling using the DIFRINT model "
 echo "-----------------------------------"
@@ -46,4 +50,4 @@ python ./scripts/StabNetStabilizer.py \
     --modelPath=$StabNetPath \
     --OutputBasePath=$OutputBasePath \
     --InputBasePath=$InputPath 
-
+'''

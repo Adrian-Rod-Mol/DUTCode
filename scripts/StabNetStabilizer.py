@@ -231,7 +231,7 @@ finally:
                             max_s = s
                             ans = [i, j, hh, ww]
     videoWriter = cv2.VideoWriter(os.path.join(production_dir, 'StabNet_stable.mp4'), 
-        cv2.VideoWriter_fourcc(*'MP4V'), 25, (ans[3] - ans[1] + 1, ans[2] - ans[0] + 1))
+        cv2.VideoWriter_fourcc(*'mp4v'), 25, (ans[3] - ans[1] + 1, ans[2] - ans[0] + 1))
     for frame in frames:
         frame_ = frame[ans[0]:ans[2] + 1, ans[1]:ans[3] + 1, :]
         videoWriter.write(frame_)

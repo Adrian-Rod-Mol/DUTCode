@@ -122,7 +122,7 @@ frame_width = opt.desiredWidth
 frame_height = opt.desiredHeight
 
 print("generate stabilized video...")
-fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 out = cv2.VideoWriter(opt.OutputBasePath + '/DIFRINT_stable.mp4', fourcc, frame_rate, (frame_width, frame_height))
 
 for f in frameList:

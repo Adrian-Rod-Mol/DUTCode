@@ -275,6 +275,7 @@ class DUT(nn.Module):
         origin_motion = torch.stack(origin_motion, 2).cuda() # B, 2, T, H, W
         origin_motion = torch.cat([torch.zeros_like(origin_motion[:, :, 0:1, :, :]).to(origin_motion.device), origin_motion], 2)
 
+        # Normalizing the motion
         origin_motion = torch.cumsum(origin_motion, 2)
         min_value = torch.min(origin_motion)
         origin_motion = origin_motion - min_value
